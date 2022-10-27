@@ -1,6 +1,7 @@
 package org.example;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.AfterEach;
@@ -37,5 +38,25 @@ public class GildedRoseShould {
         gildedRose.updateQuality();
 
         Approvals.verify(gildedRose.items[0].toString());
+    }
+
+    @Test
+    void updateQuality_with_several_items_and_several_combinations() {
+        CombinationApprovals.verifyAllCombinations(this::updateQuality,
+                new String[]{"foo",
+                        "Aged Brie",
+                        "Backstage passes to a TAFKAL80ETC concert",
+                        "Sulfuras, Hand of Ragnaros"},
+                new Integer[]{0, 6, 11},
+                new Integer[]{0, 1, 50});
+    }
+
+    private String updateQuality(String name, int sellIn, int quality) {
+        Item[] items = new Item[]{new Item(name, sellIn, quality)};
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        String response = gildedRose.items[0].toString();
+        return response;
     }
 }
