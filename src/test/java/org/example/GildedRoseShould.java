@@ -7,7 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -31,9 +30,12 @@ public class GildedRoseShould {
     }
 
     @Test
-    void dummy_test() {
-        System.out.println("dummy");
-        String output = outContent.toString();
-        Approvals.verify(output);
+    void updateQuality_with_one_item() {
+        Item[] items = new Item[]{new Item("foo", 0, 0)};
+        GildedRose gildedRose = new GildedRose(items);
+
+        gildedRose.updateQuality();
+
+        Approvals.verify(gildedRose.items[0].toString());
     }
 }
