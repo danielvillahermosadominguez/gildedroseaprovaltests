@@ -42,13 +42,16 @@ public class GildedRoseShould {
 
     @Test
     void updateQuality_with_several_items_and_several_combinations() {
+        Integer[] sellInList = {-10,0, 6, 10, 11};
+        Integer[] qualityList = {0, 1, 49, 50};
+        String[] nameList = {"foo",
+                "Aged Brie",
+                "Backstage passes to a TAFKAL80ETC concert",
+                "Sulfuras, Hand of Ragnaros"};
         CombinationApprovals.verifyAllCombinations(this::updateQuality,
-                new String[]{"foo",
-                        "Aged Brie",
-                        "Backstage passes to a TAFKAL80ETC concert",
-                        "Sulfuras, Hand of Ragnaros"},
-                new Integer[]{0, 6, 11},
-                new Integer[]{0, 1, 50});
+                nameList,
+                sellInList,
+                qualityList);
     }
 
     private String updateQuality(String name, int sellIn, int quality) {
