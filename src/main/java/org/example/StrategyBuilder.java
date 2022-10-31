@@ -5,12 +5,12 @@ public class StrategyBuilder {
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
-    public ItemStrategy getStrategy(String name) {
+    public UpdateStrategy getStrategy(String name) {
         switch (name) {
             case AGED_BRIE: return new AgedBrie();
-            case BACKSTAGE_PASSES: return new TafKal80etcConcertStrategy();
-            case SULFURAS: return new LegendaryStrategy();
+            case BACKSTAGE_PASSES: return new BackStagePasses();
+            case SULFURAS: return new LegendaryItem();
+            default: return new GeneralItem();
         }
-        return new GeneralItemStrategy();
     }
 }

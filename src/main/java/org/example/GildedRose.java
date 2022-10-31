@@ -10,10 +10,9 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
-            ItemStrategy strategy = strategyBuilder.getStrategy(item.name);
-            strategy.execute(item);
+        for (Item item : items) {
+            UpdateStrategy strategy = strategyBuilder.getStrategy(item.name);
+            strategy.update(item);
         }
     }
 }
