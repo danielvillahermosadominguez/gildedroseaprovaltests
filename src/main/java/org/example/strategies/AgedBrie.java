@@ -1,4 +1,6 @@
-package org.example;
+package org.example.strategies;
+
+import org.example.gildedrose.Item;
 
 public class AgedBrie extends GeneralItem {
 
@@ -12,5 +14,10 @@ public class AgedBrie extends GeneralItem {
         if (isLessThanMaxQuality(item)) {
             item.quality++;
         }
+    }
+
+    @Override
+    public String getId() {
+        return "Aged Brie";
     }
 }

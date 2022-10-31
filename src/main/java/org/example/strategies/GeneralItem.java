@@ -1,7 +1,11 @@
-package org.example;
+package org.example.strategies;
+
+import org.example.gildedrose.Item;
+import org.example.gildedrose.UpdateStrategy;
 
 public class GeneralItem implements UpdateStrategy {
     public static final int MAXIMUM_QUALITY = 50;
+
     public void update(Item item) {
         evolveQuality(item);
         decreaseDaysToSell(item);
@@ -32,5 +36,10 @@ public class GeneralItem implements UpdateStrategy {
         if (item.quality > 0) {
             item.quality--;
         }
+    }
+
+    @Override
+    public String getId() {
+        return "GENERAL_ID";
     }
 }

@@ -1,4 +1,6 @@
-package org.example;
+package org.example.strategies;
+
+import org.example.gildedrose.Item;
 
 public class ConjuredItem extends GeneralItem {
      protected void evolveQuality(Item item) {
@@ -7,5 +9,10 @@ public class ConjuredItem extends GeneralItem {
         } else if (item.quality > 0){
             item.quality--;
         }
+    }
+
+    @Override
+    public String getId() {
+        return "Conjured Mana Cake";
     }
 }

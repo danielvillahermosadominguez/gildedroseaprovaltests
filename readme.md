@@ -1,3 +1,36 @@
+# Gilded Rose with approval tests and Strategy pattern
+Every commit is a step to arrive this solution. The first steps are very similar to the approach of
+Emily bache in the following videos:
+
+* Approval tests in the similar way Emily Bache started in the following video:
+https://www.youtube.com/watch?v=zyM2Ep28ED8
+
+* Refactoring the code with the same technique that Emily Bache shows in the following video:
+https://www.youtube.com/watch?v=OJmg9aMxPDI
+
+From this point, in this solution we apply the Strategy pattern and polymorphism, but this approach is
+distint of the alternative approach of Emily Bache which you can see here:
+https://www.youtube.com/watch?v=NADVhSjeyJA
+
+Every commit is a step:
+* empty project with dummy test: Junit 5
+* dummy test with approval test: to see the approach with this library
+* first approval test with one item
+* approval tests and combinations - covering all the code
+* approval tests and combinations - prepared for refactoring
+* duplication the code in the if to simplify with coverage the code: Aged Bried
+* duplication the code in the if to simplify with coverage the code: Backstage
+* simplification of the ifs in the three main cases
+* separation in several methods, previous to extract responsibilities
+* extraction of Strategy classes previous for refactoring
+* Strategy pattern and a builder pattern
+* Refactoring of Strategies, hierarchy and polymorphism
+* Refactoring and ready to add the new feature: Conjured
+* Including a new type of item: Conjured and characterization tests for the program
+* Refactoring, packages and change the names. We have changed the builder with a container (Performance)
+
+
+
 https://github.com/emilybache/GildedRose-Refactoring-Kata
 
 # Gilded Rose Requirements Specification

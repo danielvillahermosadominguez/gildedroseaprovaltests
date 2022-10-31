@@ -1,4 +1,6 @@
-package org.example;
+package org.example.strategies;
+
+import org.example.gildedrose.Item;
 
 public class BackStagePasses extends GeneralItem {
     protected void outOfDateQualityEvolution(Item item) {
@@ -21,4 +23,8 @@ public class BackStagePasses extends GeneralItem {
         return days < lessThanDays;
     }
 
+    @Override
+    public String getId() {
+        return "Backstage passes to a TAFKAL80ETC concert";
+    }
 }

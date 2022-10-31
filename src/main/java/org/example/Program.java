@@ -1,6 +1,15 @@
 package org.example;
 
 
+import org.example.container.StrategyContainer;
+import org.example.gildedrose.GildedRose;
+import org.example.gildedrose.Item;
+import org.example.gildedrose.UpdateStrategy;
+import org.example.strategies.*;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class Program {
 
 	public static void main(String... args) {
@@ -17,7 +26,14 @@ public class Program {
 				new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
 				// this conjured item does not work properly yet
 				new Item("Conjured Mana Cake", 3, 6) };
-		StrategyBuilder strategyBuilder =  new StrategyBuilder();
+		GeneralItem defaultItem = new GeneralItem();
+		List<UpdateStrategy> strategies = Arrays.asList(
+				defaultItem,
+				new AgedBrie(),
+				new BackStagePasses(),
+				new ConjuredItem(),
+				new LegendaryItem());
+		StrategyContainer strategyBuilder =  new StrategyContainer(strategies,defaultItem.getId());
 		GildedRose app = new GildedRose(items,strategyBuilder);
 
 		for (int i = 0; i < 31; i++) {
