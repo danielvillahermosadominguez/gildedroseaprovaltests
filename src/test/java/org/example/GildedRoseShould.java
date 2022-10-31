@@ -33,7 +33,11 @@ public class GildedRoseShould {
     @Test
     void updateQuality_with_one_item() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
-        GildedRose gildedRose = new GildedRose(items);
+        AgedBrie agedBrie = new AgedBrie();
+        SulfurasHandRagnaros sulfurasHandRagnaros = new SulfurasHandRagnaros();
+        TafKal80etcConcert tafKal80etcConcert = new TafKal80etcConcert();
+        ItemStrategy strategy =  new ItemStrategy(agedBrie,sulfurasHandRagnaros,tafKal80etcConcert);
+        GildedRose gildedRose = new GildedRose(items, strategy);
 
         gildedRose.updateQuality();
 
@@ -56,7 +60,11 @@ public class GildedRoseShould {
 
     private String updateQuality(String name, int sellIn, int quality) {
         Item[] items = new Item[]{new Item(name, sellIn, quality)};
-        GildedRose gildedRose = new GildedRose(items);
+        AgedBrie agedBrie = new AgedBrie();
+        SulfurasHandRagnaros sulfurasHandRagnaros = new SulfurasHandRagnaros();
+        TafKal80etcConcert tafKal80etcConcert = new TafKal80etcConcert();
+        ItemStrategy strategy =  new ItemStrategy(agedBrie,sulfurasHandRagnaros,tafKal80etcConcert);
+        GildedRose gildedRose = new GildedRose(items, strategy);
         gildedRose.updateQuality();
 
         String response = gildedRose.items[0].toString();
