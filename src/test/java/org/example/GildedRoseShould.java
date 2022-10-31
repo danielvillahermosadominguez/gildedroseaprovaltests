@@ -4,36 +4,15 @@ import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @UseReporter(DiffReporter.class)
 public class GildedRoseShould {
-   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-    private final PrintStream originalErr = System.err;
-
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
-    }
-
-    @AfterEach
-    public void restoreStreams() {
-        System.setOut(originalOut);
-        System.setErr(originalErr);
-    }
-
     @Test
     void updateQuality_with_one_item() {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
-
         StrategyBuilder strategy =  new StrategyBuilder();
         GildedRose gildedRose = new GildedRose(items, strategy);
 
@@ -50,6 +29,7 @@ public class GildedRoseShould {
                 "Aged Brie",
                 "Backstage passes to a TAFKAL80ETC concert",
                 "Sulfuras, Hand of Ragnaros"};
+
         CombinationApprovals.verifyAllCombinations(this::updateQuality,
                 nameList,
                 sellInList,
@@ -58,11 +38,39 @@ public class GildedRoseShould {
 
     private String updateQuality(String name, int sellIn, int quality) {
         Item[] items = new Item[]{new Item(name, sellIn, quality)};
-        StrategyBuilder strategy =  new StrategyBuilder();
+        StrategyBuilder strategy = new StrategyBuilder();
         GildedRose gildedRose = new GildedRose(items, strategy);
+
         gildedRose.updateQuality();
 
         String response = gildedRose.items[0].toString();
         return response;
+    }
+
+    @Test
+    public void decrease_quality_2_with_conjured_items() {
+        Item[] items = new Item[]{new Item("Conjured Mana Cake", 10, 10)};
+        StrategyBuilder strategy = new StrategyBuilder();
+        GildedRose gildedRose = new GildedRose(items, strategy);
+
+        gildedRose.updateQuality();
+
+        assertEquals(1, items.length);
+        assertEquals(9, items[0].sellIn);
+        assertEquals(8, items[0].quality);
+    }
+
+    @Test
+    public void maintain_quality_zero_as_minimum_with_conjured_items() {
+        Item[] items = new Item[]{new Item("Conjured Mana Cake", 10, 1)};
+        StrategyBuilder strategy = new StrategyBuilder();
+        GildedRose gildedRose = new GildedRose(items, strategy);
+        gildedRose.updateQuality();
+
+        gildedRose.updateQuality();
+
+        assertEquals(1, items.length);
+        assertEquals(8, items[0].sellIn);
+        assertEquals(0, items[0].quality);
     }
 }
