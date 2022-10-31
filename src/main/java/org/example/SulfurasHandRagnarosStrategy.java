@@ -1,7 +1,7 @@
 package org.example;
 
-public class SulfurasHandRagnaros {
-    protected void execute(Item item) {
+public class SulfurasHandRagnarosStrategy implements ItemStrategy{
+    public void execute(Item item) {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
         }

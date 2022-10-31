@@ -17,11 +17,8 @@ public class Program {
 				new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
 				// this conjured item does not work properly yet
 				new Item("Conjured Mana Cake", 3, 6) };
-		AgedBrie agedBrie = new AgedBrie();
-		SulfurasHandRagnaros sulfurasHandRagnaros = new SulfurasHandRagnaros();
-		TafKal80etcConcert tafKal80etcConcert = new TafKal80etcConcert();
-		ItemStrategy strategy =  new ItemStrategy(agedBrie,sulfurasHandRagnaros,tafKal80etcConcert);
-		GildedRose app = new GildedRose(items,strategy);
+		StrategyBuilder strategyBuilder =  new StrategyBuilder();
+		GildedRose app = new GildedRose(items,strategyBuilder);
 
 		for (int i = 0; i < 31; i++) {
 			System.out.println("-------- day " + i + " --------");

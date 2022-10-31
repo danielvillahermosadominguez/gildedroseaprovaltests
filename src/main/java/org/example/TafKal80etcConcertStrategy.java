@@ -1,7 +1,7 @@
 package org.example;
 
-public class TafKal80etcConcert {
-    protected void execute(Item item) {
+public class TafKal80etcConcertStrategy implements ItemStrategy{
+    public void execute(Item item) {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
 

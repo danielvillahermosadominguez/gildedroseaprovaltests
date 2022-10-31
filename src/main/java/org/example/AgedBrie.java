@@ -1,7 +1,7 @@
 package org.example;
 
-public class AgedBrie {
-    protected void execute(Item item) {
+public class AgedBrie implements ItemStrategy{
+    public void execute(Item item) {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }
