@@ -1,14 +1,15 @@
 package org.example;
 
-public class AgedBrie implements ItemStrategy{
-    public void execute(Item item) {
-        if (item.quality < 50) {
+public class AgedBrie extends GeneralItemStrategy {
+
+    protected void accelerateQualityDegradation(Item item) {
+        if ((item.sellIn < 0) && (isLessThanMaxQuality(item))) {
             item.quality = item.quality + 1;
         }
+    }
 
-        item.sellIn = item.sellIn - 1;
-
-        if ((item.sellIn < 0) && (item.quality < 50)) {
+    protected void evolveQuality(Item item) {
+        if (isLessThanMaxQuality(item)) {
             item.quality = item.quality + 1;
         }
     }
