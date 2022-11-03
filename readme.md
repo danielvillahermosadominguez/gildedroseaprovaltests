@@ -9,7 +9,7 @@ https://www.youtube.com/watch?v=zyM2Ep28ED8
 https://www.youtube.com/watch?v=OJmg9aMxPDI
 
 From this point, in this solution we apply the Strategy pattern and polymorphism, but this approach is
-distint of the alternative approach of Emily Bache which you can see here:
+distinct of the alternative approach of Emily Bache which you can see here:
 https://www.youtube.com/watch?v=NADVhSjeyJA
 
 Every commit is a step:
@@ -28,6 +28,10 @@ Every commit is a step:
 * Refactoring and ready to add the new feature: Conjured
 * Including a new type of item: Conjured and characterization tests for the program
 * Refactoring, packages and change the names. We have changed the builder with a container (Performance)
+* Refactoring to improve the design. Applying the method in template pattern: https://refactoring.guru/design-patterns/template-method
+* Refactoring to improve the design. Applying EncapsulatedCollection.
+    * Encapsulate a collection: https://martinfowler.com/bliki/EncapsulatedCollection.html
+    * Encapsulate a collection: https://refactoring.com/catalog/encapsulateCollection.html
 
 
 

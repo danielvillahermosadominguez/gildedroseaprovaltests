@@ -1,23 +1,27 @@
 package org.example.gildedrose;
 
-import org.example.container.StrategyContainer;
+import org.example.strategies.GildedRoseItemFactory;
 
-public class GildedRose {
-    private final StrategyContainer container;
-    Item[] items;
+import java.util.ArrayList;
 
-    public GildedRose(Item[] items, StrategyContainer container) {
-        this.container = container;
-        this.items = items;
+public class GildedRose extends ArrayList<Update> {
+    private final GildedRoseItemFactory factory;
+
+    public GildedRose(GildedRoseItemFactory factory) {
+        this.factory = factory;
     }
 
-    public Item[] getItems() {
-        return items;
+    public boolean addItem(Item item) {
+        return this.add(this.factory.of(item));
     }
+
     public void updateQuality() {
+        this.stream().forEach(item -> item.update());
+    }
+
+    public void addItems(Item[] items) {
         for (Item item : items) {
-            UpdateStrategy strategy = container.getById(item.name);
-            strategy.update(item);
+            this.addItem(item);
         }
     }
 }

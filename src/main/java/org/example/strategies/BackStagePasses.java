@@ -2,29 +2,35 @@ package org.example.strategies;
 
 import org.example.gildedrose.Item;
 
-public class BackStagePasses extends GeneralItem {
-    protected void outOfDateQualityEvolution(Item item) {
-        item.quality = 0;
-    }
+public class BackStagePasses extends GildedRoseItem {
 
-    protected void evolveQuality(Item item) {
-        if (isLessThanMaxQuality(item)) {
-            item.quality++;
-        }
-        if (isLessThanMaxQuality(item) && isLessThanDaysToShell(item.sellIn, 11)) {
-            item.quality++;
-        }
-        if (isLessThanMaxQuality(item) && isLessThanDaysToShell(item.sellIn, 6)) {
-            item.quality++;
-        }
-    }
-
-    private boolean isLessThanDaysToShell(int days, int lessThanDays) {
-        return days < lessThanDays;
+    public BackStagePasses(Item item) {
+        this.item = item;
     }
 
     @Override
-    public String getId() {
-        return "Backstage passes to a TAFKAL80ETC concert";
+    protected boolean canIDecreaseSellIn() {
+        return true;
     }
+
+    protected void outOfDateQualityEvolution() {
+        item.quality = 0;
+    }
+
+    protected void evolveQuality() {
+        if (isLessThanMaxQuality()) {
+            item.quality++;
+        }
+        if (isLessThanMaxQuality() && isLessThanDaysToShell(11)) {
+            item.quality++;
+        }
+        if (isLessThanMaxQuality() && isLessThanDaysToShell(6)) {
+            item.quality++;
+        }
+    }
+
+    private boolean isLessThanDaysToShell(int lessThanDays) {
+        return item.sellIn < lessThanDays;
+    }
+
 }

@@ -2,22 +2,26 @@ package org.example.strategies;
 
 import org.example.gildedrose.Item;
 
-public class AgedBrie extends GeneralItem {
+public class AgedBrie extends GildedRoseItem {
 
-    protected void outOfDateQualityEvolution(Item item) {
-        if (isLessThanMaxQuality(item)) {
-            item.quality++;
-        }
-    }
-
-    protected void evolveQuality(Item item) {
-        if (isLessThanMaxQuality(item)) {
-            item.quality++;
-        }
+    public AgedBrie(Item item) {
+        this.item = item;
     }
 
     @Override
-    public String getId() {
-        return "Aged Brie";
+    protected boolean canIDecreaseSellIn() {
+        return true;
+    }
+
+    protected void outOfDateQualityEvolution() {
+        if (isLessThanMaxQuality()) {
+            item.quality++;
+        }
+    }
+
+    protected void evolveQuality() {
+        if (isLessThanMaxQuality()) {
+            item.quality++;
+        }
     }
 }

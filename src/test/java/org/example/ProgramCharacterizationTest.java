@@ -14,6 +14,25 @@ public class ProgramCharacterizationTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+    }
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(originalOut);
+        System.setErr(originalErr);
+    }
+
+    @Test
+    void should_be_true_with_the_original_output() {
+        Program.main(null);
+        String output = this.outContent.toString();
+        output = output.replace("\r","");
+        assertEquals(this.expectedOutput, output);
+    }
 
     private String expectedOutput = "OMGHAI!\n" +
             "-------- day 0 --------\n" +
@@ -388,23 +407,4 @@ public class ProgramCharacterizationTest {
             "Backstage passes to a TAFKAL80ETC concert, -25, 0\n" +
             "Conjured Mana Cake, -27, 0\n" +
             "\n";
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
-    }
-
-    @AfterEach
-    public void restoreStreams() {
-        System.setOut(originalOut);
-        System.setErr(originalErr);
-    }
-
-    @Test
-    void should_be_true_with_the_original_output() {
-        Program.main(null);
-        String output = this.outContent.toString();
-        output = output.replace("\r","");
-        assertEquals(this.expectedOutput, output);
-    }
 }
