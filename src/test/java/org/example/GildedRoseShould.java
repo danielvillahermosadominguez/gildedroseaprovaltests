@@ -51,7 +51,7 @@ public class GildedRoseShould {
     }
 
     private String updateQuality(String name, int sellIn, int quality) {
-        gildedRose.clear();
+        gildedRose = new GildedRose(this.factory);
         Item item = new Item(name, sellIn, quality);
         gildedRose.addItem(item);
 
